@@ -1,0 +1,12 @@
+---
+version: '3'
+services:
+  slicer-notebook:
+    image: lassoan/slicer-notebook:2020-05-15-89b6bb5
+    environment:
+      - containerName="slicer-notebook"
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/sliceruser/workingFolder
+    restart: always
