@@ -8,8 +8,9 @@ Docker-compose implementations for running 3D Slicer in cloud environments.
 
 ```
 .
-├── Slicer      <- Slicer app container
-└── docs        <- Documentation and images
+├── Slicer          <- Slicer app container
+├── SlicerJupyter   <- Slicer Jupyter server container
+└── docs            <- Documentation and images
 ```
 
 ## Create a new VM
@@ -19,6 +20,8 @@ As an example GCE is used as the cloud provider.
 Instructions of setting up a new machine are pretty basic. They go through installing basic packages, git and docker engine.
 
 [See detailed walkthrough here](docs/gceconfig.md)
+
+![GCE VM Setup](docs/gcevm.jpg)
 
 By the time you are done you should have a running machine and you are connected to the machine via ssh.
 
@@ -32,15 +35,18 @@ git clone https://github.com/piiq/SlicerCompose.git
 
 ### Run Slicer "in the browser"
 
-The compose file in this repository uses pre-built images from [SlicerDockers repository](). If you need to customize the image check out the Dockerfiles and how they're built.
+The compose file in this repository uses pre-built images from [SlicerDockers repository](https://github.com/pieper/SlicerDockers). If you need to customize the image check out the Dockerfiles and how they're built.
 
-Navigate to the Slicer subfolder and execute:
+Navigate to the `Slicer` subfolder and launch docker-compose:
 
 ```bash
+cd Slicer
 docker-compose up -d
 ```
 
 This will launch the container in deattached mode and make it auto-start on machine boot.
+
+![Slicer Dockers](docs/slicerdocker.jpg)
 
 ## Credentials for basic authorization
 
@@ -54,12 +60,14 @@ For a user `slicer` with a password `researcher` the following command will crea
 echo "researcher" | htpasswd -c htpasswd slicer
 ```
 
+---
 
 ### Run Jupyter Notebook server
 
 Launch the container
 
 ```bash
+cd SlicerJupyter
 docker-compose up
 ```
 
@@ -81,7 +89,8 @@ Enter the token and set the password.
 
 After setting a password for the notebook server stop the container by pressing Ctrl+C and start the container in deatached mode:
 
-
 ```bash
-docker-compose up
+docker-compose up -d
 ```
+
+![Slicer jupyter](docs/slicerjupyter.jpg)
