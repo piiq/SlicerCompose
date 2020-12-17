@@ -1,5 +1,7 @@
 # Slicer Compose
 
+![SlicerCompose](docs/slicercompose.jpg)
+
 Docker-compose implementations for running 3D Slicer in cloud environments.
 
 ## Project structure
