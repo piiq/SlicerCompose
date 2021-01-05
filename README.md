@@ -94,3 +94,7 @@ docker-compose up -d
 ```
 
 ![Slicer jupyter](docs/slicerjupyter.jpg)
+
+---
+
+This repository was created during the [2020 Slicer Project Week](https://github.com/NA-MIC/ProjectWeek/tree/master/PW34_2020_Virtual)
