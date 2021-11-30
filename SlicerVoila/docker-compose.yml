@@ -1,0 +1,36 @@
+---
+version: '3.7'
+services:
+  slicer-voila:
+    image: slicer-voila:latest
+    environment:
+      - containerName="slicer-voila"
+    networks:
+      main:
+        aliases:
+          - voila_main
+    command: |
+      /home/sliceruser/Slicer/bin/PythonSlicer -m jupyter lab --no-browser --port=8888 --ip='*' --LabApp.token='' --LabApp.password=''
+    volumes:
+      - .:/home/sliceruser/workingFolder
+    # restart: always
+
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - slicer-voila
+    networks:
+      main:
+        aliases:
+          - voila_main
+    volumes:
+      - ./voila.conf:/etc/nginx/conf.d/default.conf
+      # - ./htpasswd:/etc/nginx/conf/htpasswd
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_PORT=80
+
+networks:
+  main:
+    name: voila_main
